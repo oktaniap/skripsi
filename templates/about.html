@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>Hijabiken</title>
+        <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='assets/logo.ico') }}" />
+        <!-- Bootstrap icons-->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="{{ url_for('static', filename='home/css/styles.css') }}" rel="stylesheet" />
+        <link href="{{ url_for('static', filename='home/2/css/styles.css') }}" rel="stylesheet" />
+    </head>
+    <body>
+        <!-- Navigation-->
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container px-4 px-lg-5">
+                <a class="navbar-brand" href="#!">Hijabiken</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
+                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="\">Home</a></li>
+                        <li class="nav-item"><a class="nav-link" href="\about">About</a></li>
+                        <li class="nav-item"><a class="nav-link" href="\products">Products</a></li>
+                    </ul>
+                    <form class="d-flex">
+                        <a class="btn btn-outline-dark" href="https://wa.me/085732538498/?text=Saya%20tertarik%20pada%20produk%20Hijabiken">Contact Us
+                            &nbsp
+                            <img src="{{ url_for('static', filename='img/wa.png') }}" class="mr-3" style="width: 20px; height: 20px;" data-toggle="tooltip" title="Whatsapp">
+                        </a>
+                    </form>
+                </div>
+            </div>
+        </nav>
+        <!-- Header-->
+        <header class="bg-dark py-5" style="background-image: url('{{ url_for('static', filename='img/header.jpg') }}'); background-size: 100%;">
+            <div class="container px-4 px-lg-5 my-5">
+                <div class="text-center text-white">
+                    <h1 class="display-4 fw-bolder">Hijabiken</h1>
+                    <p class="lead fw-normal text-black-50 mb-0">Produk terbaik hanya untuk anda</p>
+                </div>
+            </div>
+        </header>
+        <!-- Section-->
+        <section class="page-section">
+            <div class="container">
+                <div class="product-item">
+                    <div class="product-item-title d-flex">
+                        <div class="bg-faded p-5 d-flex ms-auto rounded">
+                            <h2 class="section-heading mb-0">
+                                <span class="section-heading-upper">Produk dengan</span>
+                                <span class="section-heading-lower">Kualitas Terbaik</span>
+                            </h2>
+                        </div>
+                    </div>
+                    <img class="product-item-img mx-auto d-flex rounded img-fluid mb-3 mb-lg-0" src="{{ url_for('static', filename='home/2/assets/img/about1.jpg') }}" alt="..." style="height: 500px;" />
+                    <div class="product-item-description d-flex me-auto">
+                        <div class="bg-faded p-5 rounded"><p class="mb-0">Kami menjamin produk yang kami tawarkan menggunakan bahan yang berkualitas terbaik, sehingga anda dijamin tidak akan kecewa dengan produk kami. </p></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="page-section">
+            <div class="container">
+                <div class="product-item">
+                    <div class="product-item-title d-flex">
+                        <div class="bg-faded p-5 d-flex me-auto rounded">
+                            <h2 class="section-heading mb-0">
+                                <span class="section-heading-upper">Cocok dalam</span>
+                                <span class="section-heading-lower">Kegiatan Apapun</span>
+                            </h2>
+                        </div>
+                    </div>
+                    <img class="product-item-img mx-auto d-flex rounded img-fluid mb-3 mb-lg-0" src="{{ url_for('static', filename='home/2/assets/img/about2.jpg') }}" alt="..." style="height: 500px;"/>
+                    <div class="product-item-description d-flex ms-auto">
+                        <div class="bg-faded p-5 rounded"><p class="mb-0">Kami menawarkan produk yang trendi di masa kini, cocok digunakan di berbagai kegiatan. Produk kami diiproduksi berdasarkan research trend pakaian masa kini dalam berbagai umur.</p></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="page-section">
+            <div class="container">
+                <div class="product-item">
+                    <div class="product-item-title d-flex">
+                        <div class="bg-faded p-5 d-flex ms-auto rounded">
+                            <h2 class="section-heading mb-0">
+                                <span class="section-heading-upper">Tersedia Banyak</span>
+                                <span class="section-heading-lower">Pilihan Produk & Variasi</span>
+                            </h2>
+                        </div>
+                    </div>
+                    <img class="product-item-img mx-auto d-flex rounded img-fluid mb-3 mb-lg-0" src="{{ url_for('static', filename='home/2/assets/img/about3.jpg') }}" alt="..." style="height: 500px;"/>
+                    <div class="product-item-description d-flex me-auto">
+                        <div class="bg-faded p-5 rounded"><p class="mb-0">Kami menyediakan berbagai produk terutama produk muslimah yang memiliki berbagai pilihan produk dan juga macam variasinya. Anda bisa dengan nyaman memilih produk yang anda sukai.</p></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Footer-->
+        <footer class="py-5 bg-dark">
+            <div class="container"><p class="m-0 text-center text-white">Copyright &copy; Hijabiken 2021</p></div>
+        </footer>
+        <!-- Bootstrap core JS-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Core theme JS-->
+        <script src="{{ url_for('static', filename='home/js/scripts.js') }}"></script>
+        <script src="{{ url_for('static', filename='home/2/js/scripts.js') }}"></script>
+    </body>
+</html>

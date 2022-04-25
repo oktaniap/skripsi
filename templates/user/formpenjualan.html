@@ -1,0 +1,134 @@
+{% include 'user/header.html' %}
+   <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1 class="m-0">Form Penjualan</h1>
+          </div><!-- /.col -->
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="/formpenjualan">Entri</a></li>
+              <li class="breadcrumb-item active"><a href="/formpenjualan_excel">Excel</a></li>
+            </ol>
+          </div><!-- /.col -->
+        </div><!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
+   <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+        {% with messages = get_flashed_messages() %}
+                  {% if messages %}
+                 {% for message in messages %}
+                   <div class="alert alert-success">
+                    <strong>{{ message }}</strong>
+                  </div>
+                 {% endfor %}
+                  {% endif %}
+                {% endwith %}
+        <form action="/simpanformpenjualan" method="POST" enctype="multipart/form-data">
+          <div class="card-body">
+            <div class="form-group">
+              <label for="username_pembeli">Username Pembeli</label>
+              <input type="text" class="form-control" id="username_pembeli" placeholder="Username Pembeli" name="username_pembeli">
+            </div>
+            <div class="form-group">
+              <label for="nama_pembeli">Nama Pembeli</label>
+              <input type="text" class="form-control" id="nama_pembeli" placeholder="Nama Pembeli" name="nama_pembeli">
+            </div>
+            <hr>
+            <div class="control-group after-add-more">
+              <label for="produk">Produk</label>
+              <input type="text" class="form-control" id="produk[]" placeholder="Produk" name="produk[]">
+              
+              <label for="variasi">Variasi</label>
+              <input type="text" class="form-control" id="variasi[]" placeholder="Variasi" name="variasi[]">
+              
+              <label for="harga">Harga</label>
+              <input type="text" class="form-control" id="harga[]" placeholder="Harga" name="harga[]">
+              
+              <label for="jumlah">Jumlah</label>
+              <input type="text" class="form-control" id="jumlah[]" placeholder="Jumlah" name="jumlah[]">
+              
+              <br>
+              <button class="btn btn-success add-more" type="button">
+                <i class="glyphicon glyphicon-plus"></i> Add
+              </button>
+              <hr>
+            </div>
+            <div class="form-group">
+              <label for="ongkir">Ongkos Kirim</label>
+              <input type="text" class="form-control" id="ongkir" placeholder="Ongkir" name="ongkir">
+            </div>
+            <div class="form-group">
+              <label for="ekspedisi">Ekspedisi</label>
+              <input type="text" class="form-control" id="ekspedisi" placeholder="Ekspedisi" name="ekspedisi">
+            </div>
+            <div class="form-group">
+              <label for="no_telepon">No. Telepon</label>
+              <input type="text" class="form-control" id="no_telepon" placeholder="No. Telepon" name="no_telepon">
+            </div>
+            <div class="form-group">
+              <label for="alamat">Alamat</label>
+              <input type="text" class="form-control" id="alamat" placeholder="Alamat" name="alamat">
+            </div>
+            <div class="form-group">
+              <label for="kota_kab">Kota/Kabupaten</label>
+              <input type="text" class="form-control" id="kota_kab" placeholder="Kota/Kabupaten" name="kota_kab">
+            </div>
+            <div class="form-group">
+              <label for="provinsi">Provinsi</label>
+              <input type="text" class="form-control" id="provinsi" placeholder="Provinsi" name="provinsi">
+            </div>
+            <div class="form-group">
+              <label for="waktu_selesai">Waktu Pesanan Selesai</label>
+              <input type="date" class="form-control" id="waktu_selesai" placeholder="Waktu Pesanan Selesai" name="waktu_selesai">
+            </div>
+            <!-- /.card-body -->
+          </div>
+
+          <div class="card-footer">
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </div>
+        </form>
+
+        <div class="copy invisible">
+          <div class="control-group">
+            <label for="produk">Produk</label>
+            <input type="text" class="form-control" id="produk[]" placeholder="Produk" name="produk[]"><br>
+          
+            <label for="variasi">Variasi</label>
+            <input type="text" class="form-control" id="variasi[]" placeholder="Variasi" name="variasi[]">
+          
+            <label for="harga">Harga</label>
+            <input type="text" class="form-control" id="harga[]" placeholder="Harga" name="harga[]">
+            
+            <label for="jumlah">Jumlah</label>
+            <input type="text" class="form-control" id="jumlah[]" placeholder="Jumlah" name="jumlah[]">
+            
+            <br>
+            <button class="btn btn-danger remove" type="button"><i class="glyphicon glyphicon-remove"></i> Remove</button>
+            <hr>
+          </div>
+        </div>
+      </div><!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+  </div>
+  <script type="text/javascript">
+    $(document).ready(function() {
+      $(".add-more").click(function(){ 
+        var html = $(".copy").html();
+        $(".after-add-more").after(html);
+      });
+      $("body").on("click",".remove",function(){ 
+        $(this).parents(".control-group").remove();
+      });
+    });
+  </script>
+  <!-- /.content-wrapper -->
+  {% include 'user/footer.html' %}

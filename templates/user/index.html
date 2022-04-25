@@ -1,0 +1,409 @@
+{% include 'user/header.html' %}
+   <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1 class="m-0">Dashboard</h1>
+          </div><!-- /.col -->
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item active"><a href="/home">Home</a></li>
+              <li class="breadcrumb-item"><a href="/transaksi">Transaksi</a></li>
+              <li class="breadcrumb-item"><a href="/pelanggan">Pelanggan</a></li>
+              <li class="breadcrumb-item"><a href="/produk">Produk</a></li>
+            </ol>
+          </div><!-- /.col -->
+        </div><!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
+   <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-md-3 col-sm-6 col-12">
+            <div class="info-box">
+              <span class="info-box-icon" style="background-color: rgba(198, 174, 199, 0.8);"><i class="fas fa-hand-holding-usd"></i></span>
+
+              <div class="info-box-content">
+                <span class="info-box-text">Total Pendapatan</span>
+                <span class="info-box-number">{{ total['total'] }}</span>
+              </div>
+              <!-- /.info-box-content -->
+            </div>
+            <!-- /.info-box -->
+          </div>
+          <!-- /.col -->
+          <div class="col-md-3 col-sm-6 col-12">
+            <div class="info-box">
+              <span class="info-box-icon" style="background-color: rgba(198, 174, 199, 0.8);"><i class="fas fa-shopping-bag"></i></span>
+
+              <div class="info-box-content">
+                <span class="info-box-text">Total Transaksi</span>
+                <span class="info-box-number">{{ transaksi['transaksi'] }}</span>
+              </div>
+              <!-- /.info-box-content -->
+            </div>
+            <!-- /.info-box -->
+          </div>
+          <!-- /.col -->
+          <div class="col-md-3 col-sm-6 col-12">
+            <div class="info-box">
+              <span class="info-box-icon" style="background-color: rgba(198, 174, 199, 0.8);"><i class="fas fa-user-alt"></i></span>
+
+              <div class="info-box-content">
+                <span class="info-box-text">Total Pelanggan</span>
+                <span class="info-box-number">{{ pelanggan['pelanggan'] }}</span>
+              </div>
+              <!-- /.info-box-content -->
+            </div>
+            <!-- /.info-box -->
+          </div>
+          <!-- /.col -->
+          <div class="col-md-3 col-sm-6 col-12">
+            <div class="info-box">
+              <span class="info-box-icon" style="background-color: rgba(198, 174, 199, 0.8);"><i class="fas fa-tags"></i></span>
+
+              <div class="info-box-content">
+                <span class="info-box-text">Total Produk</span>
+                <span class="info-box-number">{{ barang['barang'] }}</span>
+              </div>
+              <!-- /.info-box-content -->
+            </div>
+            <!-- /.info-box -->
+          </div>
+          <!-- /.col -->
+        </div>
+        <!-- /.row -->
+
+        <!-- AREA CHART -->
+        <div class="row">
+        <div class="col-md-6">
+            <div class="card card-danger">
+              <div class="card-header" style="background-color: rgba(146, 97, 149, 0.82);">
+                <h3 class="card-title" style="color: white;">Grafik Total Pendapatan 5 Bulan Terakhir</h3>
+
+                <div class="card-tools">
+                  <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                    <i class="fas fa-minus"></i>
+                  </button>
+                  <button type="button" class="btn btn-tool" data-card-widget="remove">
+                    <i class="fas fa-times"></i>
+                  </button>
+                </div>
+              </div>
+              <div class="card-body">
+                <div class="chart">
+                  <canvas id="lineChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
+                </div>
+              </div>
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+
+            <div class="card card-danger">
+              <div class="card-header" style="background-color: rgba(146, 97, 149, 0.82);">
+                <h3 class="card-title" style="color: white;">Grafik Top 5 Penjualan Berdasarkan Provinsi</h3>
+
+                <div class="card-tools">
+                  <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                    <i class="fas fa-minus"></i>
+                  </button>
+                  <button type="button" class="btn btn-tool" data-card-widget="remove">
+                    <i class="fas fa-times"></i>
+                  </button>
+                </div>
+              </div>
+              <div class="card-body">
+                <canvas id="pieChart" style="min-height: 250px; height: 350px; max-height: 350px; max-width: 100%;"></canvas>
+              </div>
+              <!-- /.card-body -->
+            </div>
+
+          </div>
+          <div class="col-md-6">
+
+            <!-- BAR CHART -->
+            <div class="card card-success">
+              <div class="card-header" style="background-color: rgba(146, 97, 149, 0.82);">
+                <h3 class="card-title" style="color: white;">Grafik Jumlah Transaksi 5 Bulan Terakhir</h3>
+
+                <div class="card-tools">
+                  <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                    <i class="fas fa-minus"></i>
+                  </button>
+                  <button type="button" class="btn btn-tool" data-card-widget="remove">
+                    <i class="fas fa-times"></i>
+                  </button>
+                </div>
+              </div>
+              <div class="card-body">
+                <div class="chart">
+                  <canvas id="barChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
+                </div>
+              </div>
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+
+              <div class="card card-success">
+              <div class="card-header border-0" style="background-color: rgba(146, 97, 149, 0.82);">
+                <h3 class="card-title" style="color: white;">Top 5 Pelanggan</h3>
+                <div class="card-tools">
+                  <a href="#" class="btn btn-tool btn-sm">
+                    <i class="fas fa-download"></i>
+                  </a>
+                  <a href="#" class="btn btn-tool btn-sm">
+                    <i class="fas fa-bars"></i>
+                  </a>
+                </div>
+              </div>
+              <div class="card-body table-responsive p-0">
+                <table class="table table-striped table-valign-middle">
+                  <thead>
+                  <tr>
+                    <th>No</th>
+                    <th>Nama Pelanggan</th>
+                    <th><center>Total Pengeluaran</center></th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                    {% for rs in top_pelanggan %}
+                  <tr>
+                    <td>{{ loop.index }}</td>
+                    <td>{{ rs.pelanggan}}</td>
+                    <td><center>{{ rs.monetary }}</center></td>
+                  </tr>
+                  {% endfor %}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <!-- /.card -->
+
+            <div class="card card-success">
+              <div class="card-header border-0" style="background-color: rgba(146, 97, 149, 0.82);">
+                <h3 class="card-title" style="color: white;">Top 5 Produk</h3>
+                <div class="card-tools">
+                  <a href="#" class="btn btn-tool btn-sm">
+                    <i class="fas fa-download"></i>
+                  </a>
+                  <a href="#" class="btn btn-tool btn-sm">
+                    <i class="fas fa-bars"></i>
+                  </a>
+                </div>
+              </div>
+              <div class="card-body table-responsive p-0">
+                <table class="table table-striped table-valign-middle">
+                  <thead>
+                  <tr>
+                    <th>No</th>
+                    <th>Produk</th>
+                    <th>Terjual</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                    {% for rs in top_produk %}
+                  <tr>
+                    <td>{{ loop.index }}</td>
+                    <td>{{ rs.produk}}</td>
+                    <td><center>{{ rs.jumlah }}x</center></td>
+                  </tr>
+                  {% endfor %}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <!-- /.card -->
+
+            </div>
+            
+          </div>
+        </div>
+
+        <script>
+          $(function () {
+            //--------------
+            //- AREA CHART -
+            //--------------
+            var areaChartData = {
+                labels  : [{% for item in bulan %}
+                           "{{ item.bulan }}",
+                          {% endfor %}],
+                datasets: [
+                  {
+                    label               : 'Digital Goods',
+                    backgroundColor     : 'rgba(50, 18, 67, 0.8)',
+                    borderColor         : 'rgba(50, 18, 67, 0.8)',
+                    pointRadius          : false,
+                    pointColor          : 'rgb(38,19,76)',
+                    pointStrokeColor    : 'rgba(50, 18, 67, 0.8)',
+                    pointHighlightFill  : '#fff',
+                    pointHighlightStroke: 'rgba(50, 18, 67, 0.8)',
+                    data                : [{% for item in total_bulan %}
+                                           "{{ item.total }}",
+                                          {% endfor %}]
+                  },
+                  {
+                    label               : '',
+                    backgroundColor     : '',
+                    borderColor         : '',
+                    pointRadius         : false,
+                    pointColor          : '',
+                    pointStrokeColor    : '',
+                    pointHighlightFill  : '',
+                    pointHighlightStroke: '',
+                    data                : []
+                  },
+                ]
+              }
+
+              var areaChartOptions = {
+                maintainAspectRatio : false,
+                responsive : true,
+                legend: {
+                  display: false
+                },
+                scales: {
+                  xAxes: [{
+                    gridLines : {
+                      display : true,
+                    }
+                  }],
+                  yAxes: [{
+                    gridLines : {
+                      display : true,
+                    }
+                  }]
+                }
+              }
+
+              //-------------
+              //- LINE CHART -
+              //--------------
+              var lineChartCanvas = $('#lineChart').get(0).getContext('2d')
+              var lineChartOptions = $.extend(true, {}, areaChartOptions)
+              var lineChartData = $.extend(true, {}, areaChartData)
+              lineChartData.datasets[0].fill = false;
+              lineChartData.datasets[1].fill = false;
+              lineChartOptions.datasetFill = false
+
+              var lineChart = new Chart(lineChartCanvas, {
+                type: 'line',
+                data: lineChartData,
+                options: lineChartOptions
+              })
+
+
+
+
+              //-------------
+              //- BAR CHART -
+              //-------------
+              var areaChartData1 = {
+                labels  : [{% for item in bulan %}
+           "{{ item.bulan }}",
+          {% endfor %}],
+                datasets: [
+                  {
+                    label               : 'Transaksi',
+                    backgroundColor     : 'rgba(50, 18, 67, 0.34)',
+                    borderColor         : 'rgba(50, 18, 67, 0.34)',
+                    pointRadius          : false,
+                    pointColor          : '#3b8bba',
+                    pointStrokeColor    : 'rgba(50, 18, 67, 0.34)',
+                    pointHighlightFill  : '#fff',
+                    pointHighlightStroke: 'rgba(50, 18, 67, 0.34)',
+                    data                : [{% for item in total_transaksi %}
+               "{{ item.transaksi }}",
+              {% endfor %}]
+                  },
+                ]
+              }
+              var barChartCanvas = $('#barChart').get(0).getContext('2d')
+              var barChartData = $.extend(true, {}, areaChartData1)
+              var temp = areaChartData1.datasets
+              barChartData.datasets = temp
+
+              var barChartOptions = {
+                responsive              : true,
+                maintainAspectRatio     : false,
+                datasetFill             : false
+              }
+
+              new Chart(barChartCanvas, {
+                type: 'bar',
+                data: barChartData,
+                options: barChartOptions
+              })
+
+              
+              
+            })
+          </script>
+          <script>
+            $(function () {
+              
+              //-------------
+              //- PIE CHART -
+              //-------------
+              // Get context with jQuery - using jQuery's .get() method.
+
+          var data = [{
+            data: [{% for item in propinsi %}
+                   "{{ item.jumlah }}",
+                  {% endfor %}],
+            backgroundColor: [
+              'rgba(187, 147, 214, 0.72)', 'rgba(225, 80, 254, 0.34)', '#9370db', 'rgba(254, 115, 255, 0.72)', 'rgba(72, 50, 86, 0.8)'
+            ],
+            borderColor: "#fff"
+          }];
+
+          var options = {
+            tooltips: {
+              enabled: true
+            },
+            plugins: {
+              datalabels: {
+                formatter: (value, ctx) => {
+
+                  let sum = ctx.dataset._meta[0].total;
+                  let percentage = (value * 100 / sum).toFixed(2) + "%";
+                  return percentage;
+
+
+                },
+                color: '#fff',
+              }
+            }
+          };
+
+
+          var ctx = document.getElementById("pieChart").getContext('2d');
+          var myChart = new Chart(ctx, {
+            type: 'pie',
+            data: {
+            labels: [{% for item in propinsi %}
+                     "{{ item.provinsi }}",
+                    {% endfor %}],
+              datasets: data
+            },
+            options: options
+          });
+
+              
+
+            })
+          </script>
+          <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@0.7.0"></script>
+
+      </div><!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+  
+  {% include 'user/footer.html' %}

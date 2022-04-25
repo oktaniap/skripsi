@@ -1,0 +1,79 @@
+{% include 'user/header.html' %}
+   <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1 class="m-0">Form Penjualan</h1>
+          </div><!-- /.col -->
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="/formpenjualan">Entri</a></li>
+              <li class="breadcrumb-item active"><a href="/formpenjualan_excel">Excel</a></li>
+            </ol>
+          </div><!-- /.col -->
+        </div><!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
+   <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-md-12">
+            <!-- general form elements -->
+            <div class="card">
+              <div class="card-header" style="background-color:rgba(153, 153, 153, 0.8);">
+                <h3 class="card-title" style="color: white;">Tutorial Mengatur File Excel
+                </h3>
+              </div>
+              <div class="card-body">
+              <p>1. Unduh data penjualan pada e-commerce</p>
+              <p>2. Ubah data dengan menyisakan kolom No Pesanan, Status Pesanan, Alasan Pembatalan, Status Pembatalan/ Pengembalian, No.Resi, Opsi Pengiriman, Antar ke counter/ pick-up, Waktu Pengiriman Diatur, Waktu Pesanan Dibuat, Waktu Pembayaran Dilakukan, Nama Produk, Nama Variasi, Harga Setelah Diskon, Jumlah, Total Harga Produk, Berat Produk, Perkiraan Ongkos Kirim, Username (Pembeli), Nama Penerima, No Telepon, Alamat Pengiriman, Kota/Kabupaten, Provinsi, Waktu Pesanan Selesai</p>
+              <p>3. Simpan dalam format .xls</p>
+              <p>4. Berikut contoh file excel <a href="https://docs.google.com/spreadsheets/d/1jW6xtmy62p5PhCjXr5XatG5hnhnpPyPx/edit?usp=sharing&ouid=113575391032209060591&rtpof=true&sd=true">Download</a> </p>
+            </div>
+            </div>
+            <div class="card card-primary">
+              <div class="card-header" style="background-color: rgba(146, 97, 149, 0.82);">
+                <h3 class="card-title" style="color: white;">Tambah Data Penjualan (Excel)</h3>
+              </div>
+              <!-- /.card-header -->
+              <!-- form start -->
+              <form action="/simpanformpenjualan_excel" method="POST" enctype="multipart/form-data">
+                <div class="card-body">
+                  <div class="form-group">
+                    <label for="data_excel">Data Penjualan Excel</label>
+                    <input type="file" class="form-control" id="file"  onchange="checkfile(this);" placeholder="Data Penjualan Excel" name="file" autocomplete="off" required>
+                  </div>
+                <!-- /.card-body -->
+
+                <div class="card-footer">
+                  <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+              </form>
+            </div>
+            <!-- /.card -->
+          </div>
+        </div>
+        <script type="text/javascript" language="javascript">
+          function checkfile(sender) {
+              var validExts = new Array(".xls");
+              var fileExt = sender.value;
+              fileExt = fileExt.substring(fileExt.lastIndexOf('.'));
+              if (validExts.indexOf(fileExt) < 0) {
+                alert("Please select a valid format file (xls).");
+                $("#file").val('');
+                return false;
+              }
+              else return true;
+          }
+          </script>
+      </div><!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+  {% include 'user/footer.html' %}

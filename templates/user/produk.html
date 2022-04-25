@@ -1,0 +1,222 @@
+{% include 'user/header.html' %}
+   <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1 class="m-0">Dashboard Produk</h1>
+          </div><!-- /.col -->
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="/home">Home</a></li>
+              <li class="breadcrumb-item active"><a href="/transaksi">Transaksi</a></li>
+              <li class="breadcrumb-item"><a href="/pelanggan">Pelanggan</a></li>
+              <li class="breadcrumb-item"><a href="/produk">Produk</a></li>
+            </ol>
+          </div><!-- /.col -->
+        </div><!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
+   <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-md-3 col-sm-6 col-12">
+            <div class="info-box">
+              <span class="info-box-icon" style="background-color: rgba(198, 174, 199, 0.8);"><i class="fas fa-tags"></i></span>
+
+              <div class="info-box-content">
+                <span class="info-box-text">Total Produk</span>
+                <span class="info-box-number">{{ barang['produk'] }}</span>
+              </div>
+              <!-- /.info-box-content -->
+            </div>
+            <!-- /.info-box -->
+          </div>
+          <!-- /.col -->
+          <div class="col-md-3 col-sm-6 col-12">
+            <div class="info-box">
+              <span class="info-box-icon" style="background-color: rgba(198, 174, 199, 0.8);"><i class="fas fa-wallet"></i></span>
+
+              <div class="info-box-content">
+                <span class="info-box-text">Terjual/bulan</span>
+                <span class="info-box-number">{{ a }}</span>
+              </div>
+              <!-- /.info-box-content -->
+            </div>
+            <!-- /.info-box -->
+          </div>
+          <!-- /.col -->
+          
+        </div>
+        <!-- /.row -->
+
+        <div class="row">
+          <div class="col-md-6">
+            <!-- BAR CHART -->
+            <div class="card card-success">
+              <div class="card-header" style="background-color: rgba(146, 97, 149, 0.82);">
+                <h3 class="card-title" style="color: white;">Grafik Jumlah Produk Terjual 5 Bulan Terakhir</h3>
+
+                <div class="card-tools">
+                  <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                    <i class="fas fa-minus"></i>
+                  </button>
+                  <button type="button" class="btn btn-tool" data-card-widget="remove">
+                    <i class="fas fa-times"></i>
+                  </button>
+                </div>
+              </div>
+              <div class="card-body">
+                <div class="chart">
+                  <canvas id="stackedBarChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
+                </div>
+              </div>
+              <!-- /.card-body -->
+            </div>
+            <div class="card card-success">
+              <div class="card-header border-0" style="background-color: rgba(146, 97, 149, 0.82);">
+                <h3 class="card-title" style="color: white;">Produk Paling Laku</h3>
+                <div class="card-tools">
+                  <a href="#" class="btn btn-tool btn-sm">
+                    <i class="fas fa-download"></i>
+                  </a>
+                  <a href="#" class="btn btn-tool btn-sm">
+                    <i class="fas fa-bars"></i>
+                  </a>
+                </div>
+              </div>
+              <div class="card-body table-responsive p-0">
+                <table class="table table-striped table-valign-middle">
+                  <thead>
+                  <tr>
+                    <th>No</th>
+                    <th>Produk</th>
+                    <th>Total</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                    {% for rs in top_produk %}
+                  <tr>
+                    <td>{{ loop.index }}</td>
+                    <td>{{ rs.produk }}</td>
+                    <td><center>{{ rs.jumlah }} x</center></td>
+                  </tr>
+                  {% endfor %}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>  
+            <!-- /.card -->
+          <div class="col-md-6">
+            <div class="card card-success">
+              <div class="card-header border-0" style="background-color: rgba(146, 97, 149, 0.82);">
+                <h3 class="card-title" style="color: white;">Produk Paling Hot</h3>
+                <div class="card-tools">
+                  <a href="#" class="btn btn-tool btn-sm">
+                    <i class="fas fa-download"></i>
+                  </a>
+                  <a href="#" class="btn btn-tool btn-sm">
+                    <i class="fas fa-bars"></i>
+                  </a>
+                </div>
+              </div>
+              <div class="card-body table-responsive p-0">
+                <table class="table table-striped table-valign-middle">
+                  <thead>
+                  <tr>
+                    <th>No</th>
+                    <th width="300">Produk</th>
+                    <th><center>Harga</center></th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                    {% for rs in hot %}
+                  <tr>
+                    <td>{{ loop.index }}</td>
+                    <td>{{ rs.nama_produk }}</td>
+                    <td><center>{{ rs.total_harga }}</center></td>
+                  </tr>
+                  {% endfor %}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div><!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+<script>
+            $(function () {
+  var areaChartData2 = {
+                labels  : [{% for item in bulan %}
+           "{{ item.bulan }}",
+          {% endfor %}],
+                datasets: [
+                  {
+                    label               : 'E-commerce',
+                    backgroundColor     : 'rgba(187, 147, 214, 0.72)',
+                    borderColor         : 'rgba(187, 147, 214, 0.72)',
+                    pointRadius          : false,
+                    pointColor          : '#3b8bba',
+                    pointStrokeColor    : 'rgba(187, 147, 214, 0.72)',
+                    pointHighlightFill  : '#fff',
+                    pointHighlightStroke: 'rgba(187, 147, 214, 0.72)',
+                    data                : [{% for item in sho %}
+               "{{ item.jumlah }}",
+              {% endfor %}]
+                  },
+                  {
+          label               : 'Manual',
+          backgroundColor     : 'rgba(72, 50, 86, 0.8)',
+          borderColor         : 'rgba(72, 50, 86, 0.8)',
+          pointRadius         : false,
+          pointColor          : 'rgba(72, 50, 86, 0.8)',
+          pointStrokeColor    : '#c1c7d1',
+          pointHighlightFill  : '#fff',
+          pointHighlightStroke: 'rgba(72, 50, 86, 0.8)',
+          data                : [{% for item in wa %}
+               "{{ item.jumlah }}",
+              {% endfor %}]
+        },
+                ]
+              }
+
+
+            var barChartData = $.extend(true, {}, areaChartData2)
+            var temp = areaChartData2.datasets
+            barChartData.datasets = temp
+
+            var stackedBarChartCanvas = $('#stackedBarChart').get(0).getContext('2d')
+            var stackedBarChartData = $.extend(true, {}, barChartData)
+
+            var stackedBarChartOptions = {
+              responsive              : true,
+              maintainAspectRatio     : false,
+              scales: {
+                xAxes: [{
+                  stacked: true,
+                }],
+                yAxes: [{
+                  stacked: true
+                }]
+              }
+            }
+
+            new Chart(stackedBarChartCanvas, {
+              type: 'bar',
+              data: stackedBarChartData,
+              options: stackedBarChartOptions
+    })
+  })
+</script>
+  <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@0.7.0"></script>
+  <script src="{{ url_for('static', filename='dist/js/pages/dashboard3.js') }}"></script>
+  {% include 'user/footer.html' %}

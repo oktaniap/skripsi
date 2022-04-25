@@ -1,0 +1,153 @@
+{% include 'user/header.html' %}
+   <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1 class="m-0">Data Penjualan</h1>
+          </div><!-- /.col -->
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              
+            </ol>
+          </div><!-- /.col -->
+        </div><!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
+   <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-md-12">
+            <!-- general form elements -->
+            <div class="card card-primary">
+                {% for penjualan in penjualan %}
+              <!-- /.card-header -->
+              <!-- form start -->
+                <div class="card-body">
+                  <div class="form-group">
+                    <label for="no_pesanan" style="width: 200px;">No Pesanan</label>
+                    {{penjualan.no_pesanan}}
+                  </div>
+                  <div class="form-group">
+                    <label for="status_pesanan" style="width: 200px;">Status Pesanan</label>{{penjualan.status_pesanan}}
+                  </div>
+                  <div class="form-group">
+                    <label for="alasan_pembatalan" style="width: 200px;">Alasan Pembatalan</label>
+                    {{penjualan.alasan_pembatalan}}
+                  </div>
+                  <div class="form-group">
+                    <label for="status_pembatalan" style="width: 200px;">Status Pembatalan</label>
+                    {{penjualan.status_pembatalan}}
+                  </div>
+                  <div class="form-group">
+                    <label for="no_resi" style="width: 200px;">No Resi</label>
+                    {{penjualan.no_resi}}
+                  </div>
+                  <div class="form-group">
+                    <label for="opsi_pengiriman" style="width: 200px;">Opsi Pengiriman</label>
+                    {{penjualan.opsi_pengiriman}}
+                  </div>
+                  <div class="form-group">
+                    <label for="antar_pengiriman" style="width: 200px;">Antar Pengiriman</label>
+                    {{penjualan.antar_pengiriman}}
+                  </div>
+                  <div class="form-group">
+                    <label for="waktu_pengiriman_diatur" style="width: 200px;">Waktu Pengiriman Diatur</label>
+                    {{penjualan.waktu_pengiriman_diatur}}
+                  </div>
+                  <div class="form-group">
+                    <label for="waktu_pesanan_dibuat" style="width: 200px;">Waktu Pesanan Dibuat</label>
+                    {{penjualan.waktu_pesanan_dibuat}}
+                  </div>
+                  <div class="form-group">
+                    <label for="waktu_pembayaran_dilakukan" style="width: 200px;">Waktu Pembayaran Dilakukan</label>
+                    {{penjualan.waktu_pembayaran_dilakukan}}
+                  </div>
+                  <div class="form-group">
+                    <table class="table table-bordered">
+                      <thead>
+                        <tr>
+                          <th>No</th>
+                          <th>Produk</th>
+                          <th>Variasi</th>
+                          <th style="width: 120px">Harga</th>
+                          <th>Jumlah</th>
+                          <th style="width: 120px">Total Harga</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {% for barang in barang %}
+                        <tr>
+                          <td><center>{{ loop.index }}</center></td>
+                          <td>{{barang.nama_produk}}</td>
+                          <td>{{barang.nama_variasi}}</td>
+                          <td>{{barang.harga}}</td>
+                          <td><center>{{barang.jumlah}}</center></td>
+                          <td>{{barang.total_harga}}</td>
+                        </tr>
+                        {% endfor %}
+                        <tr>
+                          <td colspan="5"><b><p style="text-align: right;">TOTAL</p></b></td>
+                          <td><b>{{penjualan.total_harga}}</b></td>  
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                  <div class="form-group">
+                    <label for="ongkos_kirim" style="width: 200px;">Ongkos Kirim</label>
+                    {{penjualan.ongkos_kirim}}
+                  </div>
+                  <div class="form-group">
+                    <label for="username_pembeli" style="width: 200px;">Username Pembeli</label>
+                    {{penjualan.username_pembeli}}
+                  </div>
+                  <div class="form-group">
+                    <label for="nama_penerima" style="width: 200px;">Nama Penerima</label>
+                    {{penjualan.nama_penerima}}
+                  </div>
+                  <div class="form-group">
+                    <label for="no_telepon" style="width: 200px;">No Telepon</label>
+                    {{penjualan.no_telepon}}
+                  </div>
+                  <div class="form-group">
+                    <table>
+                      <tr>
+                        <td>
+                          <label for="alamat_pengiriman" style="width: 200px;">
+                            Alamat Pengiriman
+                          </label>
+                        </td>
+                        <td>
+                          {{penjualan.alamat_pengiriman}}
+                        </td>
+                      </tr>
+                    </table>
+                  </div>
+                  <div class="form-group">
+                    <label for="kota_kab" style="width: 200px;">Kota/Kabupaten</label>
+                    {{penjualan.kota_kab}}
+                  </div>
+                  <div class="form-group">
+                    <label for="provinsi" style="width: 200px;">Provinsi</label>
+                    {{penjualan.provinsi}}
+                  </div>
+                  <div class="form-group">
+                    <label for="waktu_pesanan_selesai" style="width: 200px;">Waktu Pesanan Selesai</label>
+                    {{penjualan.waktu_pesanan_selesai}}
+                  </div>
+                  {% endfor %}
+                <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+          </div>
+        </div>
+      </div><!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+  {% include 'user/footer.html' %} 
